@@ -1,10 +1,11 @@
 import React from 'react';
 
-const yells = () => {
-    return(
-        <div className="Yells">
-            <p>This is the test Info for the Yells</p>
-        </div>
+
+const yells = (props) => {
+    return (
+        // <div className="Yells">
+                <h5 className='yellInformation'>{props.content}</h5>
+        // </div>
     )
 };
 

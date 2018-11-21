@@ -1,0 +1,13 @@
+.navigation{
+    border: 5px solid black;
+    text-align: center;
+}
+
+.navPicture{
+    height: 25px;
+    width: 25px;
+}
+
+.navLink{
+    margin-right: 50px;
+}
