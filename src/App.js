@@ -10,13 +10,19 @@ import PersonalInfo from './PersonalInfo/personalinfo';
 class App extends Component {
   state = {
     yells : [
-              { content: 'first yell'}, { content: 'second yell'}, 
-              { content: 'third yell'}, { content: 'fourth yell'},
-              { content: 'fifth yell'}, { content: 'sixth yell'},
-              { content: 'seventh yell'}, { content: 'eight yell'},
-              { content: 'ninth yell'}, { content: 'tenth yell'}
+              { id: '1', content: 'first yell'}, {id: '2', content: 'second yell'}, 
+              { id: '3', content: 'third yell'}, {id: '4', content: 'fourth yell'},
+              { id: '5', content: 'fifth yell'}, {id: '6', content: 'sixth yell'},
+              { id: '7', content: 'seventh yell'}, {id: '8', content: 'eight yell'},
+              { id: '9', content: 'ninth yell'}, {id: '10', content: 'tenth yell'}
             ],
     showYells: true
+  }
+
+  deleteYellHandler = (yellIndex) => {
+    const yells = [...this.state.yells];
+    yells.splice(yellIndex, 1);
+    this.setState({yells: yells})
   }
   render() {
 
@@ -25,9 +31,11 @@ class App extends Component {
     if (this.state.showYells){
       yells = (
         <div>
-          {this.state.yells.map(yell => {
+          {this.state.yells.map((yell, index) => {
             return <Yells
-            content={yell.content}/>
+            click={() => this.deleteYellHandler(index)}
+            content={yell.content}
+            key={yell.id}/>
           })}
         </div>
       );
@@ -42,25 +50,6 @@ class App extends Component {
     );
   }
 
-  
-//  myyells = [{ content: 'first yell'}, { content: 'second yell'}, 
-//  { content: 'third yell'}, { content: 'fourth yell'},
-//  { content: 'fifth yell'}, { content: 'sixth yell'},
-//  { content: 'seventh yell'}, { content: 'eight yell'},
-//  { content: 'ninth yell'}, { content: 'tenth yell'}]
-
-//   yellmapping({myyells}){
-//     return myyells.map(yell => (
-//         <h1>{yell.content}</h1>
-//     ))
-// }
-
-
-  // YellsList({myYells}){
-  //   return yells.map(yell =>(
-  //     <p>{yells.content}</p>
-  //   ));
-  // }
 }
 
 export default App;
