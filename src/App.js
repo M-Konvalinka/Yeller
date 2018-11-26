@@ -16,13 +16,18 @@ class App extends Component {
               { id: '7', content: 'seventh yell'}, {id: '8', content: 'eight yell'},
               { id: '9', content: 'ninth yell'}, {id: '10', content: 'tenth yell'}
             ],
-    showYells: true
+    showYells: false
   }
 
   deleteYellHandler = (yellIndex) => {
     const yells = [...this.state.yells];
     yells.splice(yellIndex, 1);
     this.setState({yells: yells})
+  }
+
+  toggleYellHandler = () => {
+    const doesShow = this.state.showYells;
+    this.setState({showYells: !doesShow});
   }
   render() {
 
@@ -45,6 +50,8 @@ class App extends Component {
         <Navigation />
         <PersonalInfo className='personalInfo' />
         <h2>Below is the dummy Data</h2>
+        <button 
+          onClick={this.toggleYellHandler}>Show Yells</button>
         {yells}
       </div>
     );
