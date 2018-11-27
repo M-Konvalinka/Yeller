@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.css'; // need to import css modules stylesheet as styles instead of just a sheet
 import Yells from './Yells/yells';
 import Navigation from './Navigation/navigation';
 import './Navigation/navigation.css';
@@ -49,7 +49,8 @@ class App extends Component {
       <div className="App">
         <Navigation />
         <PersonalInfo className='personalInfo' />
-        <h2>Below is the dummy Data</h2>
+        <h5 className={styles.h5Test}> this info is purple and bold due to the 'h5Test' in app.module.css</h5>
+        <h2>Below is the dummy Data, which is now green and bold due to 'h5Test' in  yells.module.css</h2>
         <button 
           onClick={this.toggleYellHandler}>Show Yells</button>
         {yells}
