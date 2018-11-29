@@ -31,16 +31,31 @@
   }
 }
 
+.CenteredDivs{
+  text-align: center;
+}
+
+.InlineDisplayBlock{
+  width: 30%;
+  display: inline-block;
+  border: solid purple 5px;
+}
+
 .PersonalInformation{
   width: 30%;
   display: inline-block;
 }
 
-.Yells{
-  width:65%;
+.Wrapper{
+  border: solid blue 5px;
+  width:60%;
   display:inline-block;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+.buttonStyling{
+  display: block;
 }
 
 

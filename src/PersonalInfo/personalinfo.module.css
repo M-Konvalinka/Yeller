@@ -1,0 +1,7 @@
+.PersonalInformation{
+    width: 30%;
+    display: inline-block;
+    border: solid purple 5px;
+    vertical-align: top;
+    margin: 0 auto;
+}

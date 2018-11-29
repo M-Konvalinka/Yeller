@@ -20,13 +20,33 @@ class App extends Component {
               ],
       showYells: false,
       defaultYell: 'Type here whats on your mind',
-      newYell: {},
+      newYell: [],
+      numberOfYells: 10,
+      data: [],
     };
+
+    
 
     this.handleChange = this.handleChange.bind(this);
     this.addYellHandler = this.addYellHandler.bind(this);
   }
-  
+
+  componentDidMount() {
+    // Call our fetch function below once the component mounts
+  this.callBackendAPI()
+    .then(res => this.setState({ data: res.express }))
+    .catch(err => console.log(err));
+}
+  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+callBackendAPI = async () => {
+  const response = await fetch('/express_backend');
+  const body = await response.json();
+  if (response.status !== 200) {
+    console.log("there was an error")
+    throw Error(body.message) 
+  }
+  return body;
+};
 
   deleteYellHandler = (yellIndex) => {
     const yells = [...this.state.yells];
@@ -37,16 +57,29 @@ class App extends Component {
   
 handleChange = (event) => {
   this.setState({defaultYell: event.target.value});
+  console.log("default yell looks like this" + this.state.defaultYell);
 }
 
   addYellHandler = (event) => {
+    // increaseYellCount();
     const yells = [...this.state.yells];
-    alert('A new yell was added: ' + this.state.defaultYell);
-    this.setState({newYell : {content: (this.state.defaultYell)}});
-    console.log("the entire new yell being added is " + this.state.newYell);
-    yells.push(this.state.defaultYell);
+    console.log('new yell content was added:' + this.state.defaultYell);
+    console.log("the current state of the yell count is " + this.state.numberOfYells);
+    var numberOfYellsX = (this.state.numberOfYells + 1);
+    console.log("the # of yells in line 47 is :" + numberOfYellsX + "<--- this should be 11");
+    this.setState({numberOfYells: numberOfYellsX});
+    console.log('the new number of yells are: ' + numberOfYellsX + "<-- this should now be 11 as well");
+    var newYellToBeAdded = {content : this.state.defaultYell, id : numberOfYellsX};
+    console.log("the new yell object to be added to the array of yells is: " + JSON.stringify(newYellToBeAdded));
+    yells.push(newYellToBeAdded);
     this.setState({yells: yells});
     event.preventDefault();
+  }
+
+
+
+  showYellState = (event) => {
+    console.log("the number of yells at this point after the async call are" + this.state.numberOfYells)
   }
 
   // handleChange(event) {
@@ -68,12 +101,14 @@ handleChange = (event) => {
 
     if (this.state.showYells){
       yells = (
-        <div>
-          {this.state.yells.map((yell, index) => {
+        <div className={styles.YellsInformationPart2}>
+        {/* className={`${styles.h5Test} ${styles.yellInformation}`} */}
+          {this.state.yells.map((yell, index, numberOfYells) => {
             return <Yells
             click={() => this.deleteYellHandler(index)}
             content={yell.content}
-            key={yell.id}/>
+            key={yell.id}
+            id={yell.id}/>
           })}
         </div>
       );
@@ -81,20 +116,23 @@ handleChange = (event) => {
     return (
       <div className="App">
         <Navigation />
+        <div className={styles.CenteredDivs}>
         <PersonalInfo className='personalInfo' />
+        <div className={styles.Wrapper}>
         <form onSubmit={this.addYellHandler}>
-          <label>
+            <label>
               What are you thinking?
                 <input type="text" value={this.state.defaultYell} onChange={this.handleChange}/>
-          </label>
-        <input type="submit" value="Submit" />
+            </label>
+          <input type="submit" value="Submit" />
         </form>
         {/* <input type='text'></input><button onClick={this.addYellHandler}>Add Yell</button> */}
-        <h5 className={styles.h5Test}> this info is purple and bold due to the 'h5Test' in app.module.css</h5>
-        <h2>Below is the dummy Data, which is now green and bold due to 'h5Test' in  yells.module.css</h2>
         <button 
-          onClick={this.toggleYellHandler}>Show Yells</button>
+           className='buttonStyling' onClick={this.toggleYellHandler}>Show Yells</button>
         {yells}
+        </div>
+        </div>
+        <h3>{this.state.data}</h3>
       </div>
     );
   }
