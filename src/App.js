@@ -23,6 +23,7 @@ class App extends Component {
       newYell: [],
       numberOfYells: 10,
       data: [],
+      yellsFromApi: [],
     };
 
     
@@ -34,13 +35,14 @@ class App extends Component {
   componentDidMount() {
     // Call our fetch function below once the component mounts
   this.callBackendAPI()
-    .then(res => this.setState({ data: res.express }))
+    .then(res => this.setState({ data: [res.express] }))
     .catch(err => console.log(err));
 }
   // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
 callBackendAPI = async () => {
   const response = await fetch('/express_backend');
   const body = await response.json();
+  console.log(body);
   if (response.status !== 200) {
     console.log("there was an error")
     throw Error(body.message) 
@@ -96,8 +98,12 @@ handleChange = (event) => {
     this.setState({showYells: !doesShow});
   }
   render() {
-
+    //lines below is just to test accessing the json data coming back from api endpoint
+    console.log("data looks like this" + this.state.data);
     let yells = null;
+
+    const apiYells = this.state.data;
+    console.log(apiYells);
 
     if (this.state.showYells){
       yells = (
@@ -132,40 +138,28 @@ handleChange = (event) => {
         {yells}
         </div>
         </div>
-        <h3>{this.state.data}</h3>
+        {/* <h3>
+        <ul>
+        <div className="container">
+      {apiYells.map(function(d, index){
+        return (
+          <div>
+           <li key={index}>{d.apiYells[0].id}</li>
+           <li key={index}>{d.apiYells[0].content}</li>
+          </div>
+        )
+       })}
+          </div>
+        {Object.keys(this.state.data).map(data =>
+          <li key={data.id}>{data.content}</li>
+        )}
+        </ul>
+        </h3> */}
       </div>
     );
   }
 
  }  
-//  constructor(props) {
-//   super(props);
-//   this.state = {value: ''};
-
-//   this.handleChange = this.handleChange.bind(this);
-//   this.handleSubmit = this.handleSubmit.bind(this);
-// }
-
-// handleChange(event) {
-//   this.setState({value: event.target.value});
-// }
-
-// handleSubmit(event) {
-//   alert('A name was submitted: ' + this.state.value);
-//   event.preventDefault();
-// }
-
-// render() {
-//   return (
-//     <form onSubmit={this.handleSubmit}>
-//       <label>
-//         Name:
-//         <input type="text" value={this.state.value} onChange={this.handleChange} />
-//       </label>
-//       <input type="submit" value="Submit" />
-//     </form>
-//   );
-// }
 
 
 
