@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './App.module.css'; // need to import css modules stylesheet as styles instead of just a sheet
 import Yells from './Yells/yells';
 import Navigation from './Navigation/navigation';
+import Apiyells from './ApiYells/apiyells';
 import './Navigation/navigation.css';
 import PersonalInfo from './PersonalInfo/personalinfo';
 
@@ -32,23 +33,23 @@ class App extends Component {
     this.addYellHandler = this.addYellHandler.bind(this);
   }
 
-  componentDidMount() {
-    // Call our fetch function below once the component mounts
-  this.callBackendAPI()
-    .then(res => this.setState({ data: [res.express] }))
-    .catch(err => console.log(err));
-}
-  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-callBackendAPI = async () => {
-  const response = await fetch('/express_backend');
-  const body = await response.json();
-  console.log(body);
-  if (response.status !== 200) {
-    console.log("there was an error")
-    throw Error(body.message) 
-  }
-  return body;
-};
+//   componentDidMount() {
+//     // Call our fetch function below once the component mounts
+//   this.callBackendAPI()
+//     .then(res => this.setState({ data: [res.express] }))
+//     .catch(err => console.log(err));
+// }
+//   // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+// callBackendAPI = async () => {
+//   const response = await fetch('/express_backend');
+//   const body = await response.json();
+//   console.log(body);
+//   if (response.status !== 200) {
+//     console.log("there was an error")
+//     throw Error(body.message) 
+//   }
+//   return body;
+// };
 
   deleteYellHandler = (yellIndex) => {
     const yells = [...this.state.yells];
@@ -99,11 +100,11 @@ handleChange = (event) => {
   }
   render() {
     //lines below is just to test accessing the json data coming back from api endpoint
-    console.log("data looks like this" + this.state.data);
+    // console.log("data looks like this" + this.state.data);
     let yells = null;
 
-    const apiYells = this.state.data;
-    console.log(apiYells);
+    // const apiYells = this.state.data;
+    // console.log(apiYells);
 
     if (this.state.showYells){
       yells = (
@@ -155,6 +156,7 @@ handleChange = (event) => {
         )}
         </ul>
         </h3> */}
+        <Apiyells />
       </div>
     );
   }
