@@ -7,37 +7,37 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // create a GET route
 app.get('/express_backend', (req, res) => {
-  res.send({ express: {
-                firstyell: {
-                        id : 11, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+  res.send({ express: [
+                        {
+                        id : 11, content:'some text'
                         },
-                secondyell: {
-                        id : 12, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 12, content:'other text'
                         },
-                thirdyell: {
-                        id : 13, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 13, content:'more text'
                         },
-                fourthyell: {
-                        id : 14, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 14, content:'test text'
                         },
-                fifthyell: {
-                        id : 15, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 15, content:'random words'
                         },
-                sixthyell: {
-                        id : 16, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 16, content:'other random words'
                         },
-                seventhyell: {
-                        id : 17, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 17, content:'more random words'
                         },
-                eigthyell: {
-                        id : 18, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 18, content:'stuff'
                         },
-                ninthyell: {
-                        id : 19, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 19, content:'& things'
                         },
-                tenthyell: {
-                        id : 20, content:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+                        {
+                        id : 20, content:'& such'
                         },
-        }
+                    ]
     })
 });
