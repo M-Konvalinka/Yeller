@@ -46,8 +46,8 @@ app.get('/express_backend', (req, res) => {
         if(err){
             console.log(err);
         }else{
-            console.log(result.rows);
-            res.send({express : [result.rows]});
+            console.log('result.rows = ' + result.rows);
+            res.send({express : result.rows});
             console.log('DATA WAS Received?');
             console.log('The data gotten is' + (JSON.stringify(res.rows)));
             // client.end();

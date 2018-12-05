@@ -5,7 +5,7 @@ class Apiyells extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            data : null,
+            data : [],
             dataloaded: false,
         }
     }
@@ -13,8 +13,7 @@ class Apiyells extends Component{
     componentDidMount() {
         // Call our fetch function below once the component mounts
       this.callBackendAPI()
-        .then(res => console.log('the res object is' + (JSON.stringify(res))))
-        .then(res => this.setState({ data : res , dataloaded : true }))
+        .then(res => this.setState({ data : res.express , dataloaded : true }))
         .then(res => console.log(this.state.data))
         .catch(err => console.log(err));
     }
@@ -32,9 +31,7 @@ class Apiyells extends Component{
     
     render(){
         const { data, dataloaded } = this.state;
-        console.log('the data beforehand is' + data);
-        console.log('the dataloaded is : ' + dataloaded);
-        // let dataDisplayed = null;
+
         if (!dataloaded) {
             console.log('data is not loaded yet, hitting the first if check')
             return(
@@ -47,30 +44,19 @@ class Apiyells extends Component{
         if (dataloaded){
             return(
                 <div className={styles.Wrapper}>
-                the dataloaded conditional is now true
-                {console.log(this.state.data)};
-                {/* <h1>Here is the data recieved from Express:</h1>
+                <h1>Here is the data the Node Server recieved from Postgres :</h1>
                 {data.map((yell) => {
                     return <div key={yell.id}>
-                    <p className={styles.yellBorders}> The content of this yell is : ' {yell.content} ', the id of this yell is : ' {yell.id} ' </p>
+                    <p className={styles.yellBorders}> 
+                        The content of this yell is : ' {yell.yell} ', the creation of this yell occured at : ' {yell.created_on} ',
+                        The id of the yell is : ' {yell.id} '
+                     </p>
                     </div>
                     })
-                } */}
+                }
                 </div> 
             )
         }
-        // else{
-        //     dataDisplayed = (
-        //         <div>
-        //         {this.state.data.map((yell) => {
-        //             return <div key={yell.id}>
-        //             <p> The content of this yell is : {yell.content}, the id of this yell is : {yell.id} </p>
-        //             </div>
-        //             })
-        //         }
-        //         </div>
-        //     )
-        //   }
 
         return(
             <div className={styles.Wrapper}>
