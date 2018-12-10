@@ -51,9 +51,22 @@ class Apiyells extends Component{
                         The content of this yell is : ' {yell.yell} ', the creation of this yell occured at : ' {yell.created_on} ',
                         The id of the yell is : ' {yell.id} '
                      </p>
-                    </div>
+                </div>
                     })
                 }
+                <h3>Add New Yell</h3>
+                <form onSubmit={this.onSubmit}>
+                  <div>
+                      <label>New Yell:  </label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        />
+                  </div>
+                    <div>
+                        <input type="submit" value="Add Yell"/>
+                    </div>
+                    </form>
                 </div> 
             )
         }
