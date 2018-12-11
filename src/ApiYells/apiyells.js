@@ -22,6 +22,18 @@ class Apiyells extends Component{
     onSubmit(e){
         e.preventDefault();
         console.log('the yell content is ' + (this.state.newYell))
+        var data = {yellContent : this.state.newYell}
+        console.log('the variable data is ' + (JSON.stringify(data)))
+        fetch('/express_backend', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type' : 'appliaction/json'
+            }
+        })
+        // }).then(res => res.json())
+        // .then(response => console.log('Success:', JSON.stringify(response)))
+        // .catch(error => console.error('Error: ', error));
         this.setState({
             newYell: '',
         })

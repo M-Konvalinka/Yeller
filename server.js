@@ -49,5 +49,5 @@ app.get('/express_backend', (req, res) => {
 });
 
 app.post('/express_backend', (req,res) => {
-
+    console.log('the data on the node backend is ' + req.body);
 });
