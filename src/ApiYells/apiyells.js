@@ -4,10 +4,27 @@ import styles from './apiyells.module.css'; // need to import css modules styles
 class Apiyells extends Component{
     constructor(props) {
         super(props);
+        this.onChangeYellContent = this.onChangeYellContent.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.state = {
+            newYell : '',
             data : [],
             dataloaded: false,
         }
+    }
+
+    onChangeYellContent(e){
+        this.setState({
+            newYell: e.target.value
+        })
+    }
+
+    onSubmit(e){
+        e.preventDefault();
+        console.log('the yell content is ' + (this.state.newYell))
+        this.setState({
+            newYell: '',
+        })
     }
 
     componentDidMount() {
@@ -60,7 +77,9 @@ class Apiyells extends Component{
                       <label>New Yell:  </label>
                       <input 
                         type="text" 
-                        className="form-control" 
+                        className="form-control"
+                        value={this.state.newYell}
+                        onChange={this.onChangeYellContent} 
                         />
                   </div>
                     <div>
