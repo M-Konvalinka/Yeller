@@ -6,6 +6,7 @@ class Apiyells extends Component{
         super(props);
         this.onChangeYellContent = this.onChangeYellContent.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.callBackendAPI = this.callBackendAPI.bind(this);
         this.state = {
             newYell : '',
             data : [],
@@ -36,6 +37,10 @@ class Apiyells extends Component{
         this.setState({
             newYell: '',
         })
+        this.callBackendAPI()
+        .then(res => this.setState({ data : res.express , dataloaded : true }))
+        .then(res => console.log(this.state.data))
+        .catch(err => console.log(err));
     }
 
     componentDidMount() {

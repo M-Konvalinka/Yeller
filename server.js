@@ -53,5 +53,31 @@ app.get('/express_backend', (req, res) => {
 });
 
 app.post('/express_backend', (req,res) => {
+    // const createUser = (request, response) => {
+    //     const { name, email } = request.body
+      
+    //     pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+    //       if (error) {
+    //         throw error
+    //       }
+    //       response.status(201).send(`User added with ID: ${result.insertId}`)
+    //     })
+    //   }
+    client.query('INSERT INTO yell(yell, created_on) values($1, $2)', [(req.body.yellContent), created_on], (error, results) =>{
+        if(error){
+            console.log('there was an error adding info to the db');
+            throw error
+        }
+        console.log('the user info was added correctly');
+        // need to send the message back in json format, currently throwing an error that doesn't break anything but it's
+        // due to expecting json and just getting back a string
+        //     res.status(200)
+        //     .json({
+        //         status: 'success',
+        //         message: 'pushed a yell!'
+        //     });
+        res.status(201).send('user info was added correctly');
+    })
+
     console.log('the data on the node backend is ' + (JSON.stringify(req.body)));
 });
