@@ -1,9 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
 const { Pool, Client } = require('pg');
 let yell = 'fifth set of test data';
 let created_on = new Date();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 
 const pool = new Pool({
   user: 'mikek',
@@ -49,5 +53,5 @@ app.get('/express_backend', (req, res) => {
 });
 
 app.post('/express_backend', (req,res) => {
-    console.log('the data on the node backend is ' + req.body);
+    console.log('the data on the node backend is ' + (JSON.stringify(req.body)));
 });
