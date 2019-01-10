@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 # Yeller
-A twitter like clone built with React
+A twitter like clone built with React on the frontend connected to a Node server wrapped with Express that serves an api point to a MySQL database.
+
 =======
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
