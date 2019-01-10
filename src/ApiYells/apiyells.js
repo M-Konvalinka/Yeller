@@ -25,7 +25,7 @@ class Apiyells extends Component{
         console.log('the yell content is ' + (this.state.newYell))
         var data = {yellContent : this.state.newYell}
         console.log('the variable data is ' + (JSON.stringify(data)))
-        fetch('/express_backend', {
+        fetch('/yells', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -38,7 +38,7 @@ class Apiyells extends Component{
             newYell: '',
         })
         this.callBackendAPI()
-        .then(res => this.setState({ data : res.express , dataloaded : true }))
+        .then(res => this.setState({ data : res.data , dataloaded : true }))
         .then(res => console.log(this.state.data))
         .catch(err => console.log(err));
     }
@@ -46,13 +46,13 @@ class Apiyells extends Component{
     componentDidMount() {
         // Call our fetch function below once the component mounts
       this.callBackendAPI()
-        .then(res => this.setState({ data : res.express , dataloaded : true }))
+        .then(res => this.setState({ data : res.data , dataloaded : true }))
         .then(res => console.log(this.state.data))
         .catch(err => console.log(err));
     }
       // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
     callBackendAPI = async () => {
-      const response = await fetch('/express_backend');
+      const response = await fetch('/yells');
       const body = await response.json();
       console.log(body);
       if (response.status !== 200) {
@@ -81,7 +81,7 @@ class Apiyells extends Component{
                 {data.map((yell) => {
                     return <div key={yell.id}>
                     <p className={styles.yellBorders}> 
-                        The content of this yell is : ' {yell.yell} ', the creation of this yell occured at : ' {yell.created_on} ',
+                        The content of this yell is : ' {yell.yell} ', the creation of this yell occured at : ' {yell.created_at} ',
                         The id of the yell is : ' {yell.id} '
                      </p>
                 </div>
