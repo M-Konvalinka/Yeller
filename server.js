@@ -58,3 +58,16 @@ app.post('/yells', (req, res) => {
         }
     }) 
 })
+
+// below is like 80% right
+app.post('/yells/delete', (req,res) => {
+    console.log('the reque body id is ' + req.body.id);
+    connection.query("DELETE FROM yells WHERE id= ?", [req.body.id], (err, res) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("yell DELETED!");
+        }
+    })
+})
