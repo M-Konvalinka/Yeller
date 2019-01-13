@@ -47,6 +47,8 @@ app.get('/yells', (req,res) => {
 })
 
 app.post('/yells', (req, res) => {
+    console.log(req.body);
+    console.log('adding a yell post request being hit');
     console.log('the request body is ' + req.body.yellContent);
     let informationAdded = {yell: req.body.yellContent};
     connection.query("INSERT INTO yells set ?", informationAdded, (err,res) =>{
@@ -61,9 +63,11 @@ app.post('/yells', (req, res) => {
 
 // below is like 80% right
 app.post('/yells/delete', (req,res) => {
-    console.log('the reque body id is ' + req.body.id);
+    console.log('the delete route is being hit');
+    console.log('the request body id is ' + req.body.id);
     connection.query("DELETE FROM yells WHERE id= ?", [req.body.id], (err, res) =>{
         if(err){
+            console.log('there was an error!');
             console.log(err);
         }
         else{

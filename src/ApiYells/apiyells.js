@@ -7,6 +7,7 @@ class Apiyells extends Component{
         this.onChangeYellContent = this.onChangeYellContent.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.callBackendAPI = this.callBackendAPI.bind(this);
+        this.onDelete = this.onDelete.bind(this);
         this.state = {
             newYell : '',
             data : [],
@@ -37,6 +38,25 @@ class Apiyells extends Component{
         this.setState({
             newYell: '',
         })
+        this.callBackendAPI()
+        .then(res => this.setState({ data : res.data , dataloaded : true }))
+        .then(res => console.log(this.state.data))
+        .catch(err => console.log(err));
+    }
+
+    onDelete(yell_id){
+        console.log('hitting on the on delete function');
+        console.log('/yells/delete/' + yell_id);
+        var data = { id : yell_id}
+        fetch('/yells/delete', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error: ', error));
         this.callBackendAPI()
         .then(res => this.setState({ data : res.data , dataloaded : true }))
         .then(res => console.log(this.state.data))
@@ -83,6 +103,7 @@ class Apiyells extends Component{
                     <p className={styles.yellBorders}> 
                         The content of this yell is : ' {yell.yell} ', the creation of this yell occured at : ' {yell.created_at} ',
                         The id of the yell is : ' {yell.id} '
+                        <button onClick={() => {this.onDelete(yell.id)}}>Delete Yell</button>
                      </p>
                 </div>
                     })
