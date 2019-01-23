@@ -46,6 +46,24 @@ app.get('/yells', (req,res) => {
     })
 })
 
+app.post('/users', (req,res) => {
+    console.log(req.body);
+    console.log('attemping to add a user through the users post route');
+    let userAdded = {
+        name : req.body.username,
+        password : req.body.password,
+        email : req.body.email,
+    }
+    connection.query("INSERT INTO user set ?", userAdded, (err,res) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("USER ADDED!")
+        }
+    })
+})
+
 app.post('/yells', (req, res) => {
     console.log(req.body);
     console.log('adding a yell post request being hit');
@@ -61,7 +79,7 @@ app.post('/yells', (req, res) => {
     }) 
 })
 
-// below is like 80% right
+// below works
 app.post('/yells/delete', (req,res) => {
     console.log('the delete route is being hit');
     console.log('the request body id is ' + req.body.id);
