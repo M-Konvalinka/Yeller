@@ -7,7 +7,7 @@ import styles from './navigation.module.css';
 
 const navigation = () => (
         <div className={styles.navigation}>
-            <Link to='/' className={styles.navLink}><img src={House} alt="house" className={styles.navPicture}/>Home</Link>
+            <Link to='/homepage' className={styles.navLink}><img src={House} alt="house" className={styles.navPicture}/>Home</Link>
             <Link to='/notifications' className={styles.navLink}><img src={Notification} alt="notification" className={styles.navPicture}/>Notifications</Link>
             <Link to='/messages' className={styles.navLink}><img src={Messages} alt="message" className={styles.navPicture}/>Messages</Link>
         </div>

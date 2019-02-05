@@ -11,10 +11,6 @@ class Registration extends Component{
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        // this.onChangeUserName = this.onChangeUserName.bind(this);
-        // this.onChangePassword = this.onChangeConfirmedPassword.bind(this);
-        // this.onChangeConfirmedPassword = this.onChangeConfirmedPassword.bind(this);
-        // this.onChangeEmail = this.onChangeEmail.bind(this);
     }
 
     onSubmit(e){
@@ -43,6 +39,7 @@ class Registration extends Component{
                 confirmedpassword : '',
                 email : '',
             })
+            this.props.history.push('/login');
         }
     }
 

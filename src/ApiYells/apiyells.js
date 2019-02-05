@@ -97,7 +97,7 @@ class Apiyells extends Component{
         if (dataloaded){
             return(
                 <div className={styles.Wrapper}>
-                <h1>Here is the data the Node Server recieved from Postgres :</h1>
+                <h1>Here is the data the Node Server recieved from MySQL :</h1>
                 {data.map((yell) => {
                     return <div key={yell.id}>
                     <p className={styles.yellBorders}> 

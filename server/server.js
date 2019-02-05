@@ -5,14 +5,17 @@ const bodyParser = require('body-parser');
 const app = express();
 const SELECT_ALL_YELLS = 'SELECT * FROM yells';
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
+// If errors arrive connecting to Database make sure that instead of Nodemon server.js it's
+// nodemon -r dotenv/config server.js to be able to access process.env variables
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'yellerproject',
+    host: process.env.REACT_APP_HOST,
+    user: process.env.REACT_APP_USER,
+    password: process.env.REACT_APP_PASSWORD,
+    database: process.env.REACT_APP_DATABASE,
 })
 
 connection.connect(err => {
