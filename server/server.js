@@ -30,7 +30,7 @@ app.listen(5000, () => {
     console.log('yells server listening on port 5000');
 });
 
-app.get('/', (req,res) =>{
+app.get('/', (req,res) => {
     res.send('go to /yells to see yells')
 });
 
@@ -82,7 +82,7 @@ app.post('/yells', (req, res) => {
     }) 
 })
 
-// below works
+
 app.post('/yells/delete', (req,res) => {
     console.log('the delete route is being hit');
     console.log('the request body id is ' + req.body.id);
