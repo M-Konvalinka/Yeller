@@ -4,12 +4,15 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 const SELECT_ALL_YELLS = 'SELECT * FROM yells';
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// If errors arrive connecting to Database make sure that instead of Nodemon server.js it's
+// If errors arrise when trying to connect to  the database make sure that instead of Nodemon server.js it's
 // nodemon -r dotenv/config server.js to be able to access process.env variables
 const connection = mysql.createConnection({
     host: process.env.REACT_APP_HOST,
@@ -52,17 +55,25 @@ app.get('/yells', (req,res) => {
 app.post('/users', (req,res) => {
     console.log(req.body);
     console.log('attemping to add a user through the users post route');
-    let userAdded = {
-        name : req.body.username,
-        password : req.body.password,
-        email : req.body.email,
-    }
-    connection.query("INSERT INTO user set ?", userAdded, (err,res) =>{
+    const plainTextPassword = req.body.password
+    bcrypt.hash(plainTextPassword, saltRounds, function(err, hash){
         if(err){
             console.log(err);
-        }
-        else{
-            console.log("USER ADDED!")
+        }else{
+            console.log(hash);
+            let userAdded = {
+                name : req.body.username,
+                password : hash,
+                email : req.body.email,
+            }
+            connection.query("INSERT INTO user set ?", userAdded, (err,res) =>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    console.log("USER ADDED!")
+                }
+            })
         }
     })
 })
