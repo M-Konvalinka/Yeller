@@ -1,5 +1,11 @@
 # Yeller
-A twitter like clone built with React on the frontend connected to a Node server wrapped with Express that serves an api point to a MySQL database.
+A Twitter Like Clone that allows people to post messages that are automatically capitalized to give the apperance of yelling
+
+Technologies Used 
+====================
+-React (eventually styled with bootstrap) on the Front End
+-Node on the Back End With Express to handle requests and Bcrypt to encrypt passwords
+-MySQL as the Database
 
 =======
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
