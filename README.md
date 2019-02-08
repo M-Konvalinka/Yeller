@@ -3,9 +3,9 @@ A Twitter Like Clone that allows people to post messages that are automatically 
 
 Technologies Used 
 ====================
--React (eventually styled with bootstrap) on the Front End
--Node on the Back End With Express to handle requests and Bcrypt to encrypt passwords
--MySQL as the Database
+-React (eventually styled with bootstrap) on the Front End<br>
+-Node on the Back End With Express to handle requests and Bcrypt to encrypt passwords<br>
+-MySQL as the Database<br>
 
 =======
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
